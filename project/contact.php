@@ -85,22 +85,23 @@ if(isset($_POST['send'])){
    <div class="box-container">
       <div class="box">
          <h3><span>where can I pay the rent?</span><i class="fas fa-angle-down"></i></h3>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus veritatis ducimus aut accusantium sunt error esse laborum cumque ipsum ab.</p>
+         <p>You can pay your rent directly through our platform by visiting the "Payments" section in your account. Choose your preferred payment method for a quick and secure transaction.</p>
       </div>
 
       <div class="box">
-         <h3><span>how to contact with the landlord?</span><i class="fas fa-angle-down"></i></h3>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus veritatis ducimus aut accusantium sunt error esse laborum cumque ipsum ab.</p>
+         <h3><span>How to contact with the landlord?</span><i class="fas fa-angle-down"></i></h3>
+         <p>Simply click on the landlord’s contact information within the property listing. You can reach out via email or phone for any inquiries.</p>
       </div>
 
       <div class="box">
-         <h3><span>why my listing not showing up?</span><i class="fas fa-angle-down"></i></h3>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus veritatis ducimus aut accusantium sunt error esse laborum cumque ipsum ab.</p>
+         <h3><span>Why my listing not showing up?</span><i class="fas fa-angle-down"></i></h3>
+         <p>Make sure your listing is complete, with all required details filled in. Also, check that it has been approved and published. Contact support if the issue persists.</p>
       </div>
 
       <div class="box">
          <h3><span>how to promote my listing?</span><i class="fas fa-angle-down"></i></h3>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus veritatis ducimus aut accusantium sunt error esse laborum cumque ipsum ab.</p>
+         <p>Boost your listing by adding detailed descriptions, high-quality photos, and highlighting key features. You can also feature it at the top of search results for more visibility.
+         </p>
       </div>
 
    </div>
@@ -108,13 +109,6 @@ if(isset($_POST['send'])){
 </section>
 
 <!-- faq section ends -->
-
-
-
-
-
-
-
 
 
 

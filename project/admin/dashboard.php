@@ -95,31 +95,34 @@ if(isset($_COOKIE['admin_id'])){
          <a href="messages.php" class="btn">view messages</a>
       </div>
 
+      <div class="box">
+         <?php
+            $select_complaints = $conn->prepare("SELECT * FROM `complaints`"); // Make sure you have this table.
+            $select_complaints->execute();
+            $count_complaints = $select_complaints->rowCount();
+         ?>
+         <h3><?= $count_complaints; ?></h3>
+         <p>Complaints</p>
+         <a href="complaints.php" class="btn">view complaints</a>
+      </div>
+
+      <div class="box">
+         <?php
+            $select_transactions = $conn->prepare("SELECT * FROM `qr_payments` WHERE status = 'completed'"); // Adjust query based on your requirement.
+            $select_transactions->execute();
+            $count_transactions = $select_transactions->rowCount();
+         ?>
+         <h3><?= $count_transactions; ?></h3>
+         <p>Transactions</p>
+         <a href="transactions.php" class="btn">view transactions</a>
+      </div>
+
    </div>
 
 </section>
 
 
 <!-- dashboard section ends -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 

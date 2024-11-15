@@ -55,19 +55,19 @@ if(isset($_COOKIE['user_id'])){
       <div class="box">
          <img src="images/icon-1.png" alt="">
          <h3>Looking for House</h3>
-         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque, incidunt.</p>
+         <p>Find your next home easily! Browse listings, filter by location, price, and amenities, and explore detailed property info. Start your search today!</p>
       </div>
 
       <div class="box">
          <img src="images/icon-2.png" alt="">
          <h3>rent house</h3>
-         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque, incidunt.</p>
+         <p>Looking to rent? Browse available houses, compare prices, and find the perfect home for your budget and lifestyle. Start renting today!</p>
       </div>
 
       <div class="box">
          <img src="images/icon-3.png" alt="">
          <h3>sell house</h3>
-         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque, incidunt.</p>
+         <p>Ready to sell your home? List your property, reach potential buyers, and manage offers easily. Start selling with us today!</p>
       </div>
    </div>
 

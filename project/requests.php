@@ -178,10 +178,12 @@ if (isset($_POST['mark_owned'])) {
                                 <p><i class="fas fa-couch"></i><span><?= $fetch_property['furnished']; ?></span></p>
                                 <p><i class="fas fa-maximize"></i><span><?= $fetch_property['carpet']; ?> sqft</span></p>
                             </div>
+
                             <div class="flex-btn">
                                 <a href="view_property.php?get_id=<?= $fetch_property['id']; ?>" class="btn">view property</a>
-                                <input type="submit" value="Mark as Owned" name="mark_owned" class="btn">
+                                <a href="qr_payment.php?property_id=<?= $fetch_property['id']; ?>" class="btn">Mark as Owned</a>
                             </div>
+
 
 
                         </div>

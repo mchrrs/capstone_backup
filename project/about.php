@@ -39,7 +39,7 @@ if(isset($_COOKIE['user_id'])){
       </div>
       <div class="content">
          <h3>why choose us?</h3>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum dolorem provident voluptatum distinctio laborum veritatis vitae suscipit praesentium fugiat unde?</p>
+         <p>We simplify the process of finding, renting, and selling homes. Our platform connects you with quality listings, offering a seamless experience for renters, buyers, and sellers. With user-friendly tools and reliable support, we make home management easier for everyone.</p>
          <a href="contact.php" class="inline-btn">contact us</a>
       </div>
    </div>
@@ -59,19 +59,19 @@ if(isset($_COOKIE['user_id'])){
       <div class="box">
          <img src="images/step-1.png" alt="">
          <h3>search property</h3>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, placeat.</p>
+         <p>Find your ideal home fast! Use our powerful search filters to browse properties by location, price, size, and amenities. Start exploring now!</p>
       </div>
 
       <div class="box">
          <img src="images/step-2.png" alt="">
          <h3>contact agents</h3>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, placeat.</p>
+         <p>Have questions or need help? Connect with our trusted agents for personalized assistance. We're here to guide you through every step!</p>
       </div>
 
       <div class="box">
          <img src="images/step-3.png" alt="">
          <h3>enjoy property</h3>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, placeat.</p>
+         <p>Move in with confidence! Discover your perfect home, settle in, and enjoy a comfortable living experience tailored to your needs.</p>
       </div>
 
    </div>

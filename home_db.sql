@@ -159,5 +159,24 @@ CREATE TABLE `qr_payments` (
 CREATE TABLE `owned`(
   `id` INT(20) NOT NULL,
   `property_id` INT(20) NOT NULL,
-  `user_id` varchar(20) NOT NULL
+  `user_id` INT(20) NOT NULL
 );
+
+CREATE TABLE `transactions` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `user_id` VARCHAR(20) NOT NULL,
+  `property_id` VARCHAR(20) NOT NULL,
+  `transaction_date` DATETIME DEFAULT current_timestamp,
+  `amount` DECIMAL(10, 2) NOT NULL,
+  `status` VARCHAR(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Table structure for table `complaints`
+CREATE TABLE `complaints` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `user_id` INT NOT NULL,
+  `property_id` INT NOT NULL,
+  `complaint_text` TEXT NOT NULL,
+  `complaint_date` DATETIME DEFAULT current_timestamp,
+  `status` VARCHAR(50) DEFAULT 'Pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

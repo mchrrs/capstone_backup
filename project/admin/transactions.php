@@ -14,15 +14,15 @@ if(isset($_POST['delete'])){
    $delete_id = $_POST['delete_id'];
    $delete_id = filter_var($delete_id, FILTER_SANITIZE_STRING);
 
-   $verify_delete = $conn->prepare("SELECT * FROM `admins` WHERE id = ?");
+   $verify_delete = $conn->prepare("SELECT * FROM `transactions` WHERE id = ?");
    $verify_delete->execute([$delete_id]);
 
    if($verify_delete->rowCount() > 0){
-      $delete_admin = $conn->prepare("DELETE FROM `admins` WHERE id = ?");
-      $delete_admin->execute([$delete_id]);
-      $success_msg[] = 'Admin deleted!';
+      $delete_transaction = $conn->prepare("DELETE FROM `transactions` WHERE id = ?");
+      $delete_transaction->execute([$delete_id]);
+      $success_msg[] = 'Transaction deleted!';
    }else{
-      $warning_msg[] = 'Admin deleted already!';
+      $warning_msg[] = 'Transaction already deleted!';
    }
 
 }
@@ -35,7 +35,7 @@ if(isset($_POST['delete'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Admins</title>
+   <title>Transactions</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -50,14 +50,14 @@ if(isset($_POST['delete'])){
 <?php include '../components/admin_header.php'; ?>
 <!-- header section ends -->
 
-<!-- admins section starts  -->
+<!-- transactions section starts  -->
 
 <section class="grid">
 
-   <h1 class="heading">admins</h1>
+   <h1 class="heading">transactions</h1>
 
    <form action="" method="POST" class="search-form">
-      <input type="text" name="search_box" placeholder="search admins..." maxlength="100" required>
+      <input type="text" name="search_box" placeholder="search transactions..." maxlength="100" required>
       <button type="submit" class="fas fa-search" name="search_btn"></button>
    </form>
 
@@ -67,65 +67,39 @@ if(isset($_POST['delete'])){
       if(isset($_POST['search_box']) OR isset($_POST['search_btn'])){
          $search_box = $_POST['search_box'];
          $search_box = filter_var($search_box, FILTER_SANITIZE_STRING);
-         $select_admins = $conn->prepare("SELECT * FROM `admins` WHERE name LIKE '%{$search_box}%'");
-         $select_admins->execute();
+         $select_transactions = $conn->prepare("SELECT * FROM `transactions` WHERE user_id LIKE '%{$search_box}%' OR property_id LIKE '%{$search_box}%'");
+         $select_transactions->execute();
       }else{
-         $select_admins = $conn->prepare("SELECT * FROM `admins`");
-         $select_admins->execute();
+         $select_transactions = $conn->prepare("SELECT * FROM `transactions`");
+         $select_transactions->execute();
       }
-      if($select_admins->rowCount() > 0){
-         while($fetch_admins = $select_admins->fetch(PDO::FETCH_ASSOC)){
+      if($select_transactions->rowCount() > 0){
+         while($fetch_transactions = $select_transactions->fetch(PDO::FETCH_ASSOC)){
    ?>
-   <?php if( $fetch_admins['id'] == $admin_id){ ?>
-   <div class="box" style="order: -1;">
-      <p>name : <span><?= $fetch_admins['name']; ?></p>
-      <a href="update.php" class="option-btn">update account</a>
-      <a href="register.php" class="btn">register new</a>
-   </div>
-   <?php }else{?>
    <div class="box">
-      <p>name : <span><?= $fetch_admins['name']; ?></p>
+      <p>user_id : <span><?= $fetch_transactions['user_id']; ?></span></p>
+      <p>property_id : <span><?= $fetch_transactions['property_id']; ?></span></p>
+      <p>amount : <span><?= $fetch_transactions['amount']; ?></span></p>
+      <p>status : <span><?= $fetch_transactions['status']; ?></span></p>
       <form action="" method="POST">
-         <input type="hidden" name="delete_id" value="<?= $fetch_admins['id']; ?>">
-         <input type="submit" value="delete admin" onclick="return confirm('delete this admin?');" name="delete" class="delete-btn">
+         <input type="hidden" name="delete_id" value="<?= $fetch_transactions['id']; ?>">
+         <input type="submit" value="delete transaction" onclick="return confirm('delete this transaction?');" name="delete" class="delete-btn">
       </form>
    </div>
-   <?php } ?>
    <?php
       }
    }elseif(isset($_POST['search_box']) OR isset($_POST['search_btn'])){
-      echo '<p class="empty">no results found!</p>';
+      echo '<p class="empty">results not found!</p>';
    }else{
-   ?>
-      <p class="empty">no admins added yet!</p>
-      <div class="box" style="text-align: center;">
-      <p>Create a new admin</p>
-      <a href="register.php" class="btn">Register now</a>
-   </div>
-   <?php
-      }
+      echo '<p class="empty">no transactions available!</p>';
+   }
    ?>
 
    </div>
 
 </section>
 
-<!-- admins section ends -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- transactions section ends -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
