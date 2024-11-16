@@ -171,7 +171,6 @@ CREATE TABLE `transactions` (
   `status` VARCHAR(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Table structure for table `complaints`
 CREATE TABLE `complaints` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `user_id` INT NOT NULL,
@@ -180,3 +179,15 @@ CREATE TABLE `complaints` (
   `complaint_date` DATETIME DEFAULT current_timestamp,
   `status` VARCHAR(50) DEFAULT 'Pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `owned_properties` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id` INT NOT NULL,
+    `property_name` VARCHAR(255) NOT NULL,
+    `location` VARCHAR(255) NOT NULL,
+    `size` DECIMAL(10, 2) NOT NULL,
+    `price` DECIMAL(10, 2) NOT NULL,
+    `status` ENUM('available', 'rented', 'sold') NOT NULL,
+    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
+);
+

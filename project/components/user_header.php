@@ -33,16 +33,19 @@
             </li>
          </ul>
       </div>
-      <ul>
+      <ul> 
          <li><a href="saved.php">Saved <i class="far fa-heart"></i></a></li>
          <li><a href="#">Account <i class="fas fa-angle-down"></i></a>
             <ul>
-               <li><a href="dashboard.php">Dashboard</a></li>
-               <li><a href="login.php">Login now</a></li>
-               <li><a href="register.php">Register new</a></li>
-               <?php if($user_id != ''){ ?>
-               <li><a href="/project/components/user_logout.php" onclick="return confirm('logout from this website?');">Logout</a>
-               <?php } ?></li>
+               <?php if ($user_id != '') { ?>
+                  <!-- Show these items if the user is logged in -->
+                  <li><a href="dashboard.php">Dashboard</a></li>
+                  <li><a href="/project/components/user_logout.php" onclick="return confirm('Logout from this website?');">Logout</a></li>
+               <?php } else { ?>
+                  <!-- Do NOT show Login and Register if the user is logged in -->
+                  <li><a href="login.php">Login now</a></li>
+                  <li><a href="register.php">Register new</a></li>
+               <?php } ?>
             </ul>
          </li>
       </ul>

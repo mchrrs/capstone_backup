@@ -1,0 +1,50 @@
+/* Styling for buttons in the owned properties section */
+.actions {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.actions .btn {
+    display: inline-block;
+    background-color: #33a2ff;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.3s ease;
+}
+
+/* Hover effects for buttons */
+.actions .btn:hover {
+    background-color: #0287cc;
+    transform: scale(1.05);
+}
+
+/* Active state for buttons when clicked */
+.actions .btn:active {
+    transform: scale(0.98);
+}
+
+/* Adjust button width for better alignment */
+.actions .btn {
+    width: 100%;
+}
+
+/* Optional: Add a border to the box */
+.box {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Optional: Add more spacing between properties */
+.grid {
+    gap: 20px;
+    padding: 20px;
+}

@@ -101,7 +101,7 @@ if(isset($_COOKIE['user_id'])){
       ?>
       <h3><?= $total_owned; ?></h3>
       <p>Your Unit</p>
-      <a href="/project/owned_property.php" class="btn">Manage Property</a>
+      <a href="/project/owned_properties.php" class="btn">Manage Property</a>
       </div>
 
    </div>
