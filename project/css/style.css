@@ -146,6 +146,7 @@ section{
 
 .header .navbar .flex ul{
    list-style: none;
+   margin-left: auto;
 }
 
 .header .navbar .flex ul li{
@@ -191,7 +192,8 @@ section{
 #menu-btn{
    font-size: 2.5rem;
    color: var(--black);
-   display: none;
+   margin-left: auto;
+   
 }
 
 .home{

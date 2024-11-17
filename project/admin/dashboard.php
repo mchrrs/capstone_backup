@@ -70,7 +70,7 @@ if(isset($_COOKIE['admin_id'])){
          ?>
          <h3><?= $count_users; ?></h3>
          <p>total users</p>
-         <a href="users.php" class="btn">view users</a>
+         <a href="users.php" class="btn">View users</a>
       </div>
 
       <div class="box">
@@ -84,16 +84,6 @@ if(isset($_COOKIE['admin_id'])){
          <a href="admins.php" class="btn">view admins</a>
       </div>
 
-      <div class="box">
-         <?php
-            $select_messages = $conn->prepare("SELECT * FROM `messages`");
-            $select_messages->execute();
-            $count_messages = $select_messages->rowCount();
-         ?>
-         <h3><?= $count_messages; ?></h3>
-         <p>new messages</p>
-         <a href="messages.php" class="btn">view messages</a>
-      </div>
 
       <div class="box">
          <?php
@@ -106,16 +96,6 @@ if(isset($_COOKIE['admin_id'])){
          <a href="complaints.php" class="btn">view complaints</a>
       </div>
 
-      <div class="box">
-         <?php
-            $select_transactions = $conn->prepare("SELECT * FROM `qr_payments` WHERE status = 'completed'"); // Adjust query based on your requirement.
-            $select_transactions->execute();
-            $count_transactions = $select_transactions->rowCount();
-         ?>
-         <h3><?= $count_transactions; ?></h3>
-         <p>Transactions</p>
-         <a href="transactions.php" class="btn">view transactions</a>
-      </div>
 
    </div>
 

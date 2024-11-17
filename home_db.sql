@@ -43,20 +43,6 @@ INSERT INTO `admins` (`id`, `name`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `messages`
---
-
-CREATE TABLE `messages` (
-  `id` varchar(20) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `number` varchar(11) NOT NULL,
-  `message` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `property`
 --
 
@@ -101,34 +87,6 @@ CREATE TABLE `property` (
   `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `requests`
---
-
-CREATE TABLE `requests` (
-  `id` varchar(20) NOT NULL,
-  `property_id` varchar(20) NOT NULL,
-  `sender` varchar(20) NOT NULL,
-  `receiver` varchar(20) NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `saved`
---
-
-CREATE TABLE `saved` (
-  `id` varchar(20) NOT NULL,
-  `property_id` varchar(20) NOT NULL,
-  `user_id` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `users`
 --
@@ -138,29 +96,42 @@ CREATE TABLE `users` (
   `name` varchar(50) NOT NULL,
   `number` varchar(11) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(255) NOT NULL  -- Increase length to accommodate hashed passwords
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-COMMIT;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 
-CREATE TABLE `qr_payments` (
-  `id` INT AUTO_INCREMENT PRIMARY KEY,
-  `user_id` INT NOT NULL,
-  `payment_amount` DECIMAL(10, 2) NOT NULL,
-  `payment_date` DATETIME DEFAULT current_timestamp,
-  `qr_code` varchar(255) NOT NULL,
-  `status` varchar(50) NOT NULL
-);
-
 CREATE TABLE `owned`(
   `id` INT(20) NOT NULL,
   `property_id` INT(20) NOT NULL,
   `user_id` INT(20) NOT NULL
 );
+
+CREATE TABLE qr_payments (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  payment_amount DECIMAL(10, 2) NOT NULL,
+  payment_date DATETIME DEFAULT current_timestamp,
+  qr_code varchar(255) NOT NULL,
+  status varchar(50) NOT NULL
+);
+
+-- Table structure for table messages
+--
+
+CREATE TABLE messages (
+  id varchar(20) NOT NULL,
+  name varchar(50) NOT NULL,
+  email varchar(50) NOT NULL,
+  number varchar(11) NOT NULL,
+  message varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
 
 CREATE TABLE `transactions` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -180,14 +151,12 @@ CREATE TABLE `complaints` (
   `status` VARCHAR(50) DEFAULT 'Pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `owned_properties` (
-    `id` INT AUTO_INCREMENT PRIMARY KEY,
-    `user_id` INT NOT NULL,
-    `property_name` VARCHAR(255) NOT NULL,
-    `location` VARCHAR(255) NOT NULL,
-    `size` DECIMAL(10, 2) NOT NULL,
-    `price` DECIMAL(10, 2) NOT NULL,
-    `status` ENUM('available', 'rented', 'sold') NOT NULL,
-    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
+CREATE TABLE owned_properties (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    property_name VARCHAR(255) NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    size DECIMAL(10, 2) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    status ENUM('available', 'rented', 'sold') NOT NULL
 );
-

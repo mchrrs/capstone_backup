@@ -2,9 +2,9 @@
 
 include '../project/components/connect.php';
 
-if(isset($_COOKIE['user_id'])){
+if (isset($_COOKIE['user_id'])) {
    $user_id = $_COOKIE['user_id'];
-}else{
+} else {
    $user_id = '';
    header('location:login.php');
 }
@@ -13,6 +13,7 @@ if(isset($_COOKIE['user_id'])){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,62 +26,62 @@ if(isset($_COOKIE['user_id'])){
    <!-- custom css file link -->
    <link rel="stylesheet" href="/project/css/style.css">
 
-   <link rel="stylesheet" href="/project/css/owned_properties.css">
-
 </head>
+
 <body>
-   
-<!-- header section starts -->
-<?php include '../project/components/user_header.php'; ?>
-<!-- header section ends -->
 
-<!-- owned properties section starts -->
+   <!-- header section starts -->
+   <?php include '../project/components/user_header.php'; ?>
+   <!-- header section ends -->
 
-<section class="grid">
+   <!-- owned properties section starts -->
 
-   <h1 class="heading">Your Owned Properties</h1>
+   <section class="grid">
 
-   <div class="box-container">
+      <h1 class="heading">Your Owned Properties</h1>
 
-   <?php
-      $select_properties = $conn->prepare("SELECT * FROM `owned_properties` WHERE user_id = ?");
-      $select_properties->execute([$user_id]);
+      <div class="box-container">
 
-      if($select_properties->rowCount() > 0){
-         while($fetch_property = $select_properties->fetch(PDO::FETCH_ASSOC)){
-   ?>
-   <div class="box">
-      <p>Property Name: <span><?= $fetch_property['property_name']; ?></span></p>
-      <p>Location: <span><?= $fetch_property['location']; ?></span></p>
-      <p>Size: <span><?= $fetch_property['size']; ?> sq. ft.</span></p>
-      <p>Price: <span>$<?= number_format($fetch_property['price'], 2); ?></span></p>
-      <p>Status: <span><?= $fetch_property['status']; ?></span></p>
+         <?php
+         $select_properties = $conn->prepare("SELECT * FROM `owned_properties` WHERE user_id = ?");
+         $select_properties->execute([$user_id]);
 
-      <!-- Buttons for additional actions -->
-      <div class="actions">
-         <a href="messages.php?property_id=<?= $fetch_property['id']; ?>" class="btn">Messages</a>
-         <a href="complaints.php?property_id=<?= $fetch_property['id']; ?>" class="btn">Complaints</a>
-         <a href="transactions.php?property_id=<?= $fetch_property['id']; ?>" class="btn">Payments</a>
+         if ($select_properties->rowCount() > 0) {
+            while ($fetch_property = $select_properties->fetch(PDO::FETCH_ASSOC)) {
+         ?>
+               <div class="box">
+                  <p>Property Name: <span><?= $fetch_property['property_name']; ?></span></p>
+                  <p>Location: <span><?= $fetch_property['location']; ?></span></p>
+                  <p>Size: <span><?= $fetch_property['size']; ?> sq. ft.</span></p>
+                  <p>Price: <span>$<?= number_format($fetch_property['price'], 2); ?></span></p>
+                  <p>Status: <span><?= $fetch_property['status']; ?></span></p>
+
+                  <!-- Buttons for additional actions -->
+                  <div class="actions">
+                     <a href="messages.php?property_id=<?= $fetch_property['id']; ?>" class="btn">Messages</a>
+                     <a href="complaints.php?property_id=<?= $fetch_property['id']; ?>" class="btn">Complaints</a>
+                     <a href="transactions.php?property_id=<?= $fetch_property['id']; ?>" class="btn">Payments</a>
+                  </div>
+               </div>
+         <?php
+            }
+         } else {
+            echo '<p class="empty">You have no owned properties!</p>';
+         }
+         ?>
+
       </div>
-   </div>
-   <?php
-      }
-   }else{
-      echo '<p class="empty">You have no owned properties!</p>';
-   }
-   ?>
 
-   </div>
+   </section>
 
-</section>
+   <!-- owned properties section ends -->
 
-<!-- owned properties section ends -->
-
-<!-- custom js file link -->
-<script src="../js/user_script.js"></script>
+   <!-- custom js file link -->
+   <script src="../js/user_script.js"></script>
 
 
-<?php include '../project/components/message.php'; ?>
+   <?php include '../project/components/message.php'; ?>
 
 </body>
+
 </html>

@@ -18,7 +18,7 @@
    <a href="update.php" class="btn">Update account</a>
    <div class="flex-btn">
       <a href="login.php" class="option-btn">Login</a>
-      <a href="register.php" class="option-btn">Register</a>
+      <a href="register_user.php" class="option-btn">Register</a>
    </div>
    <a href="../components/admin_logout.php" onclick="return confirm('logout from this website?');" class="delete-btn"><i class="fas fa-right-from-bracket"></i><span>logout</span></a>
 
