@@ -81,7 +81,7 @@ if (isset($_COOKIE['user_id'])) {
       }
 
       .btn {
-         background-color: rgb(218, 44, 50);
+         background-color: #004d40;
          color: white;
          padding: 10px 20px;
          border-radius: 5px;
@@ -91,7 +91,7 @@ if (isset($_COOKIE['user_id'])) {
       }
 
       .btn:hover {
-         background-color: #004d40;
+         background-color: rgb(218, 44, 50);
       }
    </style>
 </head>
@@ -125,7 +125,7 @@ if (isset($_COOKIE['user_id'])) {
             ?>
             <h3><?= $total_payments; ?></h3>
             <p>Payments Made</p>
-            <a href="/project/index.php" class="btn">Pay Rent</a>
+            <a href="/project/payment.php" class="btn">Pay Rent</a>
          </div>
 
          <!-- Owned Property Box -->
@@ -142,7 +142,7 @@ if (isset($_COOKIE['user_id'])) {
       </div>
 
    </section>
-<br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
    <?php include 'components/footer.php'; ?>

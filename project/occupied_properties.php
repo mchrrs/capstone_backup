@@ -28,8 +28,106 @@ $select_properties->execute([$user_id]);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="/project/css/style.css">
     <style>
-        /* Popup styling */
-        /* Popup styling */
+        /* Styling for the entire properties section */
+        .occupied-properties {
+            padding: 40px;
+            background-color: #f8f8f8;
+        }
+
+        .occupied-properties .heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+
+        /* Container for the properties cards */
+        .box-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .box {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .box:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Property Details Section */
+        .property-details h3 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .property-details p {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 12px;
+        }
+
+        .property-details i {
+            margin-right: 10px;
+        }
+
+        /* Contract Details Section */
+        .contract-details h4 {
+            font-weight: bold;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .contract-details .btn {
+            padding: 20px 30px; /* Increased padding for larger button */
+            background-color: #008c8c;
+            color: white;
+            border: none;
+            border-radius: 8px; /* Rounded corners for smooth look */
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1.4rem; /* Larger font size */
+            font-weight: bold; /* Make text bold */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block; /* Ensure button behaves as a block element */
+            text-align: center;
+        }
+
+        .contract-details .btn:hover {
+            background-color: #006666;
+            transform: scale(1.05);
+        }
+
+        /* Actions */
+        .actions .btn {
+            padding: 20px 30px; /* Increased padding for larger button */
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px; /* Rounded corners */
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1.4rem; /* Increased font size */
+            font-weight: bold; /* Bold text */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .actions .btn:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        /* Popup Styling */
         .popup {
             display: none;
             position: fixed;
@@ -37,15 +135,14 @@ $select_properties->execute([$user_id]);
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 1000;
-            width: 80%;
-            max-width: 800px;
-            height: 80%;
+            width: 90%;
+            max-width: 1000px;
+            height: 90%;
             background: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
             overflow: hidden;
             text-align: center;
-            /* Center align the content */
         }
 
         .popup iframe {
@@ -56,31 +153,26 @@ $select_properties->execute([$user_id]);
 
         .popup img {
             max-width: 100%;
-            /* Ensure the image scales to the popup width */
-            max-height: 100%;
-            /* Ensure the image scales to the popup height */
-            width: auto;
-            /* Maintain aspect ratio */
             height: auto;
-            /* Maintain aspect ratio */
-            margin: auto;
-            /* Center the image */
             display: block;
+            margin: auto;
         }
 
         .popup .close-btn {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 20px;
+            right: 20px;
             background: #f44336;
             color: #fff;
             border: none;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             cursor: pointer;
-            text-align: center;
-            line-height: 30px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .overlay {
@@ -90,7 +182,7 @@ $select_properties->execute([$user_id]);
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             z-index: 999;
         }
     </style>
@@ -118,7 +210,6 @@ $select_properties->execute([$user_id]);
                         <!-- Property Details Section -->
                         <div class="property-details">
                             <h3><?= htmlspecialchars($fetch_property['property_name']); ?></h3>
-                            <br>
                             <p><i class="fa-solid fa-user"></i><?= htmlspecialchars($fetch_property['name']); ?></p>
                             <p><i class="fas fa-phone-alt"></i> <?= htmlspecialchars($fetch_property['number']); ?></p>
                             <p><i class="fas fa-envelope"></i> <?= htmlspecialchars($fetch_property['email']); ?></p>
@@ -173,8 +264,8 @@ $select_properties->execute([$user_id]);
             const iframe = document.getElementById('popup-iframe');
 
             // Prepend base directory if required
-            const fullPath = filePath.startsWith('/') || filePath.startsWith('http') ?
-                filePath :
+            const fullPath = filePath.startsWith('/') || filePath.startsWith('http') ? 
+                filePath : 
                 `/project/${filePath}`;
 
             // Handle file preview
