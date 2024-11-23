@@ -61,7 +61,7 @@ if (isset($_POST['submit'])) {
 </section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-
+<br><br><br><br><br><br><br>
 <?php include 'components/footer.php'; ?>
 
 <script src="js/script.js"></script>

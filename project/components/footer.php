@@ -6,7 +6,7 @@
       
       <div class="box">
          <a href="tel:+639453448459"><i class="fas fa-phone"></i><span>+63 916 882 5525</span></a>
-         <a href="#"><i class="fas fa-envelope"></i><span>kunwarimuna@gmail.com</span></a>
+         <a href="#"><i class="fas fa-envelope"></i><span>apartment.management@gmail.com</span></a>
          <a href="1463 J. Ramos, Pasig, 1638 Metro Manila"><i class="fas fa-map-marker-alt"></i><span>1463 J Ramos St. ibayo - Tipas</span></a>
       </div>
 

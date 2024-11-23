@@ -41,3 +41,17 @@ if (!empty($error_msg) && is_array($error_msg)) {
    }
 }
 ?>
+
+<?php
+if (!empty($success_msg)) {
+    foreach ($success_msg as $message) {
+        echo "<script>swal('Success!', '{$message}', 'success');</script>";
+    }
+}
+
+if (!empty($warning_msg)) {
+    foreach ($warning_msg as $message) {
+        echo "<script>swal('Warning!', '{$message}', 'warning');</script>";
+    }
+}
+?>

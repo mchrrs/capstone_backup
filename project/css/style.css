@@ -44,7 +44,7 @@ html{
 }
 
 body{
-   background-color: var(--light-bg);
+   background-color: antiquewhite;
 }
 
 section{
@@ -285,6 +285,31 @@ section{
    font-size: 1.6rem;
    color: var(--light-color);
    padding-top: .5rem;
+}
+
+
+.occupied-properties .box-container{
+   display: grid;
+   font-size: 1.7rem;
+   grid-template-columns: repeat(auto-fit, 35rem);
+   align-items: flex-start;
+   justify-content: center;
+   gap: 1.5rem;
+}
+
+.occupied-properties .box-container .box{
+   border-radius: .5rem;
+   background-color: var(--white);
+   box-shadow: var(--box-shadow);
+   border: var(--border);
+   padding: 2rem;
+   overflow-x: hidden;
+}
+
+.occupied-properties .box-container .box .thumb{
+   position: relative;
+   height: 20rem;
+   margin-bottom: 1.5rem;
 }
 
 .listings .box-container{

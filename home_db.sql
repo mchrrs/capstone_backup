@@ -1,162 +1,125 @@
+-- Database Initialization
 -- phpMyAdmin SQL Dump
--- version 5.2.0
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Nov 21, 2022 at 09:26 PM
--- Server version: 10.4.24-MariaDB
+-- Version: 5.2.0
+-- Generated on: Nov 21, 2022 at 09:26 PM
+-- Server Version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
+-- Set UTF-8 Character Encoding
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
 -- Database: `home_db`
---
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `admins`
---
-
+-- Table: `admins`
 CREATE TABLE `admins` (
-  `id` varchar(20) NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `password` varchar(50) NOT NULL
+    `id` VARCHAR(20) NOT NULL PRIMARY KEY,
+    `name` VARCHAR(50) NOT NULL,
+    `password` VARCHAR(255) NOT NULL -- Support longer hashed passwords
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `admins`
---
-
-INSERT INTO `admins` (`id`, `name`, `password`) VALUES
-('BcjKNX58e4x7bIqIvxG7', 'admin', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2');
+INSERT INTO `admins` (`id`, `name`, `password`) 
+VALUES ('BcjKNX58e4x7bIqIvxG7', 'admin', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2');
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `property`
---
-
-CREATE TABLE `property` (
-  `id` varchar(20) NOT NULL,
-  `user_id` varchar(20) NOT NULL,
-  `property_name` varchar(50) NOT NULL,
-  `address` varchar(100) NOT NULL,
-  `price` varchar(10) NOT NULL,
-  `type` varchar(10) NOT NULL,
-  `offer` varchar(10) NOT NULL,
-  `status` varchar(50) NOT NULL,
-  `furnished` varchar(50) NOT NULL,
-  `bhk` varchar(10) NOT NULL,
-  `deposite` varchar(10) NOT NULL,
-  `bedroom` varchar(10) NOT NULL,
-  `bathroom` varchar(10) NOT NULL,
-  `balcony` varchar(10) NOT NULL,
-  `carpet` varchar(10) NOT NULL,
-  `age` varchar(2) NOT NULL,
-  `total_floors` varchar(2) NOT NULL,
-  `room_floor` varchar(2) NOT NULL,
-  `loan` varchar(50) NOT NULL,
-  `lift` varchar(3) NOT NULL DEFAULT 'no',
-  `security_guard` varchar(3) NOT NULL DEFAULT 'no',
-  `play_ground` varchar(3) NOT NULL DEFAULT 'no',
-  `garden` varchar(3) NOT NULL DEFAULT 'no',
-  `water_supply` varchar(3) NOT NULL DEFAULT 'no',
-  `power_backup` varchar(3) NOT NULL DEFAULT 'no',
-  `parking_area` varchar(3) NOT NULL DEFAULT 'no',
-  `gym` varchar(3) NOT NULL DEFAULT 'no',
-  `shopping_mall` varchar(3) NOT NULL DEFAULT 'no',
-  `hospital` varchar(3) NOT NULL DEFAULT 'no',
-  `school` varchar(3) NOT NULL DEFAULT 'no',
-  `market_area` varchar(3) NOT NULL DEFAULT 'no',
-  `image_01` varchar(50) NOT NULL,
-  `image_02` varchar(50) NOT NULL,
-  `image_03` varchar(50) NOT NULL,
-  `image_04` varchar(50) NOT NULL,
-  `image_05` varchar(50) NOT NULL,
-  `description` varchar(1000) NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Table structure for table `users`
---
-
+-- Table: `users`
 CREATE TABLE `users` (
-  `id` varchar(20) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `number` varchar(11) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL  -- Increase length to accommodate hashed passwords
+    `id` VARCHAR(20) NOT NULL PRIMARY KEY,
+    `name` VARCHAR(50) NOT NULL,
+    `number` VARCHAR(15) NOT NULL,
+    `email` VARCHAR(100) NOT NULL UNIQUE,
+    `password` VARCHAR(255) NOT NULL -- Secure hashed passwords
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-CREATE TABLE `owned`(
-  `id` INT(20) NOT NULL,
-  `property_id` INT(20) NOT NULL,
-  `user_id` INT(20) NOT NULL
-);
-
-CREATE TABLE qr_payments (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  user_id INT NOT NULL,
-  payment_amount DECIMAL(10, 2) NOT NULL,
-  payment_date DATETIME DEFAULT current_timestamp,
-  qr_code varchar(255) NOT NULL,
-  status varchar(50) NOT NULL
-);
-
--- Table structure for table messages
---
-
-CREATE TABLE messages (
-  id varchar(20) NOT NULL,
-  name varchar(50) NOT NULL,
-  email varchar(50) NOT NULL,
-  number varchar(11) NOT NULL,
-  message varchar(1000) NOT NULL
+-- --------------------------------------------------------
+-- Table: `property`
+CREATE TABLE `property` (
+    `id` varchar(20) NOT NULL,
+    `user_id` varchar(20) NOT NULL,
+    `property_name` varchar(50) NOT NULL,
+    `address` varchar(100) NOT NULL,
+    `price` varchar(10) NOT NULL,
+    `type` varchar(10) NOT NULL,
+    `offer` varchar(10) NOT NULL,
+    `status` varchar(50) NOT NULL,
+    `furnished` varchar(50) NOT NULL,
+    `bedroom` varchar(10) NOT NULL,
+    `bathroom` varchar(10) NOT NULL,
+    `carpet` varchar(10) NOT NULL,
+    `age` varchar(2) NOT NULL,
+    `total_floors` varchar(2) NOT NULL,
+    `room_floor` varchar(2) NOT NULL,
+    `image_01` VARCHAR(255),
+    `image_02` VARCHAR(255),
+    `image_03` VARCHAR(255),
+    `image_04` VARCHAR(255),
+    `image_05` VARCHAR(255),
+    `description` TEXT,
+    `date` DATETIME DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+-- Table: `qr_payments`
+CREATE TABLE `qr_payments` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id` VARCHAR(20) NOT NULL,
+    `payment_amount` DECIMAL(10, 2) NOT NULL,
+    `payment_date` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `qr_code` VARCHAR(255) NOT NULL,
+    `status` ENUM('pending', 'completed', 'failed') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+-- Table: `messages`
+CREATE TABLE `messages` (
+    `id` VARCHAR(20) NOT NULL PRIMARY KEY,
+    `name` VARCHAR(50) NOT NULL,
+    `email` VARCHAR(100) NOT NULL,
+    `number` VARCHAR(15) NOT NULL,
+    `message` TEXT NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+-- Table: `transactions`
 CREATE TABLE `transactions` (
-  `id` INT AUTO_INCREMENT PRIMARY KEY,
-  `user_id` VARCHAR(20) NOT NULL,
-  `property_id` VARCHAR(20) NOT NULL,
-  `transaction_date` DATETIME DEFAULT current_timestamp,
-  `amount` DECIMAL(10, 2) NOT NULL,
-  `status` VARCHAR(50) NOT NULL
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id` VARCHAR(20) NOT NULL,
+    `property_id` VARCHAR(20) NOT NULL,
+    `transaction_date` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `amount` DECIMAL(10, 2) NOT NULL,
+    `status` ENUM('pending', 'completed', 'cancelled') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+-- Table: `complaints`
 CREATE TABLE `complaints` (
-  `id` INT AUTO_INCREMENT PRIMARY KEY,
-  `user_id` INT NOT NULL,
-  `property_id` INT NOT NULL,
-  `complaint_text` TEXT NOT NULL,
-  `complaint_date` DATETIME DEFAULT current_timestamp,
-  `status` VARCHAR(50) DEFAULT 'Pending'
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id` VARCHAR(20) NOT NULL,
+    `property_id` VARCHAR(20) NOT NULL,
+    `complaint_text` TEXT NOT NULL,
+    `complaint_date` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `status` ENUM('pending', 'resolved', 'closed') DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE owned_properties (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    property_name VARCHAR(255) NOT NULL,
-    location VARCHAR(255) NOT NULL,
-    size DECIMAL(10, 2) NOT NULL,
-    price DECIMAL(10, 2) NOT NULL,
-    status ENUM('available', 'rented', 'sold') NOT NULL
-);
+
+-- --------------------------------------------------------
+-- Updated Table: `occupied_properties`
+CREATE TABLE `occupied_properties` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `property_name` VARCHAR(255) NOT NULL,
+    `name` VARCHAR(255) NOT NULL,
+    `occupants` INT NOT NULL,
+    `contract` VARCHAR(255),
+    `number` VARCHAR(15) NOT NULL,
+    `email` VARCHAR(100) NOT NULL,
+    `status` VARCHAR(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+COMMIT;

@@ -51,7 +51,7 @@ if (isset($_POST['delete'])) {
    <?php include '../components/admin_header.php'; ?>
 
    <!-- Users Section -->
-   <section class="grid">
+   <section class="users-table-section">
       <h1 class="heading">Users</h1>
 
       <!-- Search form -->
@@ -60,44 +60,59 @@ if (isset($_POST['delete'])) {
          <button type="submit" class="fas fa-search" name="search_btn"></button>
       </form>
 
-      <div class="box-container">
-         <?php
+      <?php
+      // Determine if a search was made
+      if (isset($_POST['search_box']) || isset($_POST['search_btn'])) {
+         $search_box = filter_var($_POST['search_box'], FILTER_SANITIZE_STRING);
+         $select_users = $conn->prepare("SELECT * FROM `users` WHERE name LIKE ?");
+         $select_users->execute(["%$search_box%"]);
+      } else {
+         $select_users = $conn->prepare("SELECT * FROM `users`");
+         $select_users->execute();
+      }
 
-         if (isset($_POST['search_box']) || isset($_POST['search_btn'])) {
-            $search_box = filter_var($_POST['search_box'], FILTER_SANITIZE_STRING);
-            $select_users = $conn->prepare("SELECT * FROM `users` WHERE name LIKE ?");
-            $select_users->execute(["%$search_box%"]);
-         } else {
+      if ($select_users->rowCount() > 0): ?>
+         <!-- Table to display users -->
+         <div class="table-container">
+            <table class="users-table">
+               <thead>
+                  <tr>
+                     <th>ID</th>
+                     <th>Name</th>
+                     <th>Email</th>
+                     <th>Phone</th>
+                     <th>Actions</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <?php while ($fetch_users = $select_users->fetch(PDO::FETCH_ASSOC)): ?>
+                     <tr>
+                        <td><?= htmlspecialchars($fetch_users['id']); ?></td>
+                        <td><?= htmlspecialchars($fetch_users['name']); ?></td>
+                        <td><?= htmlspecialchars($fetch_users['email']); ?></td>
+                        <td><?= htmlspecialchars($fetch_users['number']); ?></td>
+                        <td>
+                           <!-- Delete Form -->
+                           <form action="" method="POST" style="display:inline;">
+                              <input type="hidden" name="delete_id" value="<?= $fetch_users['id']; ?>">
+                              <button type="submit" name="delete" class="btn delete-btn" onclick="return confirm('Are you sure you want to delete this user?');">
+                                 Delete
+                              </button>
+                           </form>
+                        </td>
+                     </tr>
+                  <?php endwhile; ?>
+               </tbody>
+            </table>
+         </div>
+      <?php else: ?>
+         <p class="empty">No users found!</p>
+      <?php endif; ?>
 
-            $select_users = $conn->prepare("SELECT * FROM `users`");
-            $select_users->execute();
-         }
-
-         if ($select_users->rowCount() > 0) {
-            while ($fetch_users = $select_users->fetch(PDO::FETCH_ASSOC)) {
-         ?>
-               <div class="box">
-                  <p>Name: <span><?= htmlspecialchars($fetch_users['name']); ?></span></p>
-                  <p>Email: <span><?= htmlspecialchars($fetch_users['email']); ?></span></p>
-                  <p>Phone: <span><?= htmlspecialchars($fetch_users['number']); ?></span></p>
-
-                  <form action="" method="POST">
-                     <input type="hidden" name="delete_id" value="<?= $fetch_users['id']; ?>">
-                     <input type="submit" value="Delete User" onclick="return confirm('Are you sure you want to delete this user?');" name="delete" class="delete-btn">
-                  </form>
-               </div>
-         <?php
-            }
-         } else {
-            echo '<p class="empty">No users found!</p>';
-         }
-         ?>
-      </div>
-
+      <!-- Register new user link -->
       <div class="box-container">
          <a href="register_user.php" class="btn">Register a New User</a>
       </div>
-
    </section>
 
    <!-- Include SweetAlert and Custom JS -->
