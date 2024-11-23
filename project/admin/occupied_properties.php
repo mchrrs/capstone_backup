@@ -40,6 +40,73 @@ $select_properties->execute();
     <title>Occupied Properties</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="/project/css/admin_style.css">
+    <style>
+        /* Popup styling */
+        /* Popup styling */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            width: 80%;
+            max-width: 800px;
+            height: 80%;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            /* Center align the content */
+        }
+
+        .popup iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .popup img {
+            max-width: 100%;
+            /* Ensure the image scales to the popup width */
+            max-height: 100%;
+            /* Ensure the image scales to the popup height */
+            width: auto;
+            /* Maintain aspect ratio */
+            height: auto;
+            /* Maintain aspect ratio */
+            margin: auto;
+            /* Center the image */
+            display: block;
+        }
+
+        .popup .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #f44336;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
 </head>
 
 <body>
@@ -79,7 +146,11 @@ $select_properties->execute();
                                 <td><?= htmlspecialchars($property['occupants']); ?></td>
                                 <td>
                                     <?php if (!empty($property['contract'])): ?>
-                                        <a href="<?= htmlspecialchars($property['contract']); ?>" target="_blank" class="btn preview-btn">Preview Contract</a>
+                                        <button
+                                            class="btn preview-btn"
+                                            onclick="previewContract('<?= htmlspecialchars('admin/uploaded_contracts/' . $property['contract']); ?>')">
+                                            Preview Contract
+                                        </button>
                                     <?php else: ?>
                                         <span>No Contract</span>
                                     <?php endif; ?>
@@ -103,7 +174,53 @@ $select_properties->execute();
         <?php endif; ?>
     </section>
 
-    <script src="../js/admin_script.js"></script>
+    <!-- Popup Window -->
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <button class="close-btn" onclick="closePopup()">×</button>
+        <iframe id="popup-iframe" src=""></iframe>
+    </div>
+
+    <script>
+        // Function to preview contract
+        function previewContract(filePath) {
+            const popup = document.getElementById('popup');
+            const overlay = document.getElementById('overlay');
+            const iframe = document.getElementById('popup-iframe');
+
+            // Prepend base directory if required
+            const fullPath = filePath.startsWith('/') || filePath.startsWith('http') ?
+                filePath :
+                `/project/${filePath}`;
+
+            // Handle file preview
+            const ext = fullPath.split('.').pop().toLowerCase();
+            if (['jpg', 'jpeg', 'png', 'gif'].includes(ext)) {
+                iframe.style.display = 'none';
+                const img = document.createElement('img');
+                img.src = fullPath;
+                popup.appendChild(img);
+            } else {
+                iframe.src = fullPath;
+                iframe.style.display = 'block';
+            }
+
+            overlay.style.display = 'block';
+            popup.style.display = 'block';
+        }
+
+        // Function to close popup
+        function closePopup() {
+            const popup = document.getElementById('popup');
+            const overlay = document.getElementById('overlay');
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+
+            // Remove dynamically added image
+            const img = popup.querySelector('img');
+            if (img) img.remove();
+        }
+    </script>
 </body>
 
 </html>
