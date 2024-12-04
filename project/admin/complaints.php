@@ -260,6 +260,7 @@ if (isset($_POST['progress'])) {
       </table>
 
    </section>
+   <?php include '../components/message.php'; ?>
 
 
 </body>

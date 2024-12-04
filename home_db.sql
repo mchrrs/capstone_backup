@@ -102,11 +102,12 @@ CREATE TABLE `transactions` (
 CREATE TABLE `complaints` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `user_id` VARCHAR(20) NOT NULL,
-    `property_id` VARCHAR(20) NOT NULL,
-    `complaint_text` TEXT NOT NULL,
-    `complaint_date` DATETIME DEFAULT CURRENT_TIMESTAMP,
-    `status` ENUM('pending', 'resolved', 'closed') DEFAULT 'pending'
+    `complaint_type` ENUM('Maintenance', 'Noise', 'Cleanliness', 'Safety', 'Utility', 'Payment', 'General') NOT NULL,
+    `description` TEXT NOT NULL,
+    `status` ENUM('Pending', 'In Progress', 'Resolved') DEFAULT 'Pending',
+    `submitted_at` DATETIME DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 
 -- --------------------------------------------------------

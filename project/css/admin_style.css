@@ -423,44 +423,6 @@ section{
 }
 
 
-.occupied-properties-table {
-   width: 100%;
-   border-collapse: collapse;
-   margin-top: 20px;
-}
-
-.occupied-properties-table th, .occupied-properties-table td {
-   border: 1px solid #ddd;
-   padding: 10px;
-   text-align: center;
-   background-color: #f9f9f9;
-}
-
-.occupied-properties-table th {
-   background-color: #333;
-   color: #fff;
-}
-
-.occupied-properties-table tr:nth-child(even) {
-   background-color: #f9f9f9;
-}
-
-.occupied-properties-table tr:hover {
-   background-color: #f1f1f1;
-}
-
-.occupied-properties-table .delete-btn {
-   background-color: #ff4d4d;
-   color: #fff;
-   padding: 5px 10px;
-   border: none;
-   border-radius: 5px;
-   cursor: pointer;
-}
-
-.occupied-properties-table .delete-btn:hover {
-   background-color: #cc0000;
-}
 
 
 .users-table {
