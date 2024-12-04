@@ -1523,3 +1523,157 @@ section{
    }
 
 }
+
+
+.complaint-details {
+   max-width: 700px;
+   margin: 50px auto;
+   padding: 30px;
+   background-color: #fff;
+   border-radius: 10px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   transition: all 0.3s ease;
+}
+
+.complaint-details:hover {
+   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.complaint-details h1 {
+   font-size: 2rem;
+   text-align: center;
+   margin-bottom: 20px;
+   color: #2c3e50;
+}
+
+.complaint-details label {
+   font-size: 1.2rem;
+   font-weight: bold;
+   color: #333;
+   margin-bottom: 10px;
+   display: block;
+}
+
+.complaint-details select,
+.complaint-details textarea,
+.complaint-details button {
+   width: 100%;
+   padding: 12px;
+   font-size: 1rem;
+   margin-top: 8px;
+   margin-bottom: 20px;
+   border-radius: 8px;
+   border: 1px solid #ddd;
+   background-color: #f9f9f9;
+   color: #333;
+   transition: border-color 0.3s ease;
+}
+
+.complaint-details select:focus,
+.complaint-details textarea:focus {
+   border-color: #3498db;
+   outline: none;
+}
+
+.complaint-details textarea {
+   resize: vertical;
+}
+
+.complaint-details button {
+   background-color: #28a745;
+   color: #fff;
+   padding: 15px;
+   font-size: 1.1rem;
+   border: none;
+   border-radius: 8px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+}
+
+.complaint-details button:hover {
+   background-color: #218838;
+}
+
+.complaint-details p {
+   font-size: 1.1rem;
+   color: #e74c3c;
+   text-align: center;
+   margin-top: 20px;
+}
+
+.complaints-section {
+   margin: 50px auto;
+   max-width: 900px;
+   padding: 30px;
+   background-color: #fff;
+   border-radius: 10px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   transition: all 0.3s ease;
+}
+
+.complaints-section:hover {
+   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.complaints-section h1 {
+   font-size: 2rem;
+   text-align: center;
+   margin-bottom: 20px;
+   color: #2c3e50;
+}
+
+.complaints-table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 20px;
+}
+
+.complaints-table th, .complaints-table td {
+   padding: 12px;
+   text-align: left;
+   border: 1px solid #ddd;
+}
+
+.complaints-table th {
+   background-color: #f4f4f4;
+   font-weight: bold;
+}
+
+.complaints-table td {
+   background-color: #f9f9f9;
+}
+
+.complaints-table tr:nth-child(even) td {
+   background-color: #fafafa;
+}
+
+.complaints-table tr:hover {
+   background-color: #f1f1f1;
+}
+
+.status-badge {
+   padding: 6px 12px;
+   border-radius: 5px;
+   font-weight: bold;
+}
+
+.status-badge.pending {
+   background-color: #f8b400;
+   color: #fff;
+}
+
+.status-badge.resolved {
+   background-color: #28a745;
+   color: #fff;
+}
+
+.status-badge.in-progress {
+   background-color: #007bff;
+   color: #fff;
+}
+
+.empty {
+   text-align: center;
+   font-size: 1.2rem;
+   color: #e74c3c;
+}

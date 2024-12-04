@@ -139,10 +139,25 @@ if (isset($_COOKIE['user_id'])) {
             <p>Owned Properties</p>
             <a href="/project/occupied_properties.php" class="btn">Access Your Units</a>
          </div>
+
+         <!-- Tickets Box -->
+         <div class="box">
+            <?php
+            // Query to count the complaints by the user's ID
+            $count_complaints = $conn->prepare("SELECT * FROM `complaints` WHERE user_id = ?");
+            $count_complaints->execute([$fetch_profile['id']]);
+            $total_complaints = $count_complaints->rowCount();
+            ?>
+            <!-- Display the total complaints count -->
+            <h3><?= $total_complaints; ?></h3>
+            <p>Your Complaints</p>
+            <a href="/project/view_complaints.php" class="btn">Manage your tickets</a>
+         </div>
+
       </div>
 
    </section>
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+   <br><br><br><br><br><br><br><br><br><br><br><br><br>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
    <?php include 'components/footer.php'; ?>

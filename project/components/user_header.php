@@ -27,14 +27,9 @@
 
             <!-- Navigation Section (Desktop & Mobile) -->
             <div class="flex items-center space-x-6">
-                <!-- Home Button: Increased Font Size & Padding -->
-                <a href="#" class="text-xl px-6 py-3 rounded-lg hover:bg-teal-700 transition duration-300 hover:text-teal-200">Home</a>
-
                 <!-- Account Link with Larger Font and Padding -->
                 <div class="relative group">
-                    <a href="#" class="text-xl px-6 py-3 rounded-lg flex items-center hover:bg-teal-700 transition duration-300 hover:text-teal-200">
-                        Account
-                        <i class="fas fa-angle-down ml-2"></i>
+                    <a href="#" class="text-xl px-6 py-3 rounded-lg flex items-center hover:bg-teal-700 transition duration-300 hover:text-teal-200">Account<i class="fas fa-angle-down ml-2"></i>
                     </a>
                     <!-- Dropdown Menu (Only Visible on Hover) -->
                     <ul class="absolute left-0 hidden mt-2 space-y-2 bg-teal-600 text-white group-hover:block w-48 p-3 rounded-lg shadow-md">
