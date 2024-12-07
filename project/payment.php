@@ -147,6 +147,8 @@ $clientSecret = "EOagmsGh-9pnCvSPJ2pi1ONqUdLPr4oEfIOY26W6p_MsiVJ8rQ7ZZ74UQXePj4z
                 }
             }).render('#paypal-button-container');
         </script>
+        
+        <a href="my_bills.php" class="btn btn-primary btn-validate">Go Back</a>
     </section>
 
 </body>

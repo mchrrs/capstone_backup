@@ -464,129 +464,121 @@ section{
    background-color: #cc0000;
 }
 
+
+/* Section Styling */
 .set-property-form {
-   max-width: 700px;
-   margin: 50px auto;
-   padding: 30px;
-   background-color: #fff;
+   padding: 40px;
+   background-color: #ffffff;
    border-radius: 10px;
    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-   transition: all 0.3s ease;
-}
-
-.set-property-form:hover {
-   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-}
-
-.set-property-form .heading {
-   font-size: 2rem;
-   text-align: center;
-   margin-bottom: 20px;
-   color: #2c3e50;
-}
-
-.set-property-form .property-details {
-   font-size: 1.5rem;
-   padding: 20px;
-   background-color: #fafafa;
-   border-radius: 8px;
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.set-property-form .property-details label {
-   font-size: 1.5rem;
-   font-weight: bold;
-   color: black;
-   margin-bottom: 8px;
-   display: block;
-}
-
-.set-property-form .property-details input[type="text"],
-.property-details input[type="email"],
-.property-details input[type="number"],
-.property-details input[type="file"],
-.property-details select {
    width: 100%;
-   padding: 12px;
-   font-size: 1rem;
-   margin-bottom: 20px;
-   margin-top: 8px;
-   border-radius: 8px;
-   border: 1px solid #ddd;
-   background-color: #f9f9f9;
-   color: #333;
-   transition: border-color 0.3s ease;
+   max-width: 800px;
+   margin: 40px auto;
 }
 
-.set-property-form .property-details input[type="text"]:focus,
-.property-details input[type="email"]:focus,
-.property-details input[type="number"]:focus,
-.property-details input[type="file"]:focus,
-.property-details select:focus {
-   border-color: #3498db;
+/* Heading Styling */
+.set-property-form .heading {
+   text-align: center;
+   color: #333;
+   margin-bottom: 25px;
+   font-size: 28px;
+   font-weight: 600;
+}
+
+/* Property Details Styling */
+.property-details {
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+}
+
+/* Form Group Styling */
+.set-property-form label {
+   font-size: 14px;
+   color: #555;
+   margin-bottom: 8px;
+   font-weight: 500;
+}
+
+/* Select and Input Styling */
+.set-property-form select,
+.set-property-form input[type="number"],
+.set-property-form input[type="file"],
+.set-property-form input[type="text"] {
+   padding: 12px;
+   font-size: 14px;
+   border: 1px solid #ddd;
+   border-radius: 6px;
+   background-color: #f8f8f8;
+   width: 100%;
+   transition: border-color 0.3s, box-shadow 0.3s ease-in-out;
+}
+
+/* Focus Styling for Inputs */
+.set-property-form select:focus,
+.set-property-form input[type="number"]:focus,
+.set-property-form input[type="file"]:focus,
+.set-property-form input[type="text"]:focus {
+   border-color: #007bff;
+   box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
    outline: none;
 }
 
-.set-property-form .property-details input[type="submit"] {
-   background-color: #28a745;
-   color: #fff;
-   padding: 15px;
-   font-size: 1.1rem;
+/* Button Styling */
+.set-property-form input[type="submit"] {
+   padding: 12px 20px;
+   font-size: 16px;
+   color: white;
+   background-color: #007bff;
    border: none;
-   border-radius: 8px;
+   border-radius: 6px;
    cursor: pointer;
    transition: background-color 0.3s ease;
    width: 100%;
 }
 
-.set-property-form .property-details input[type="submit"]:hover {
-   background-color: #218838;
+/* Hover Effect for Submit Button */
+.set-property-form input[type="submit"]:hover {
+   background-color: #0056b3;
 }
 
-.set-property-form .property-details .error-msg {
-   color: #e74c3c;
-   font-size: 1.1rem;
+/* Message Styling */
+.error-msg {
    text-align: center;
+   font-size: 14px;
+   color: #dc3545;
    margin-top: 20px;
 }
 
-/* Style for file input */
-.set-property-form .property-details input[type="file"] {
-   padding: 10px;
-   border: 1px solid #ddd;
-   background-color: #f9f9f9;
+/* Styling for Property Details Section */
+.property-details h3 {
+   font-size: 24px;
+   font-weight: 600;
    color: #333;
+   margin-bottom: 10px;
 }
 
-/* Option select dropdown style */
-.set-property-form .property-details select {
-   background-color: #f9f9f9;
-   padding: 12px;
-   font-size: 1rem;
-   border-radius: 8px;
-   border: 1px solid #ddd;
+.property-details p {
+   font-size: 16px;
+   color: #555;
+   margin: 5px 0;
 }
 
-.set-property-form .property-details select option {
-   padding: 10px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-   .set-property-form .property-form {
-       width: 90%;
+/* Responsive Design for Mobile */
+@media (max-width: 600px) {
+   .set-property-form {
        padding: 20px;
+       margin: 20px;
    }
 
-   .property-details label,
-   .property-details input[type="submit"] {
-       font-size: 1rem;
+   .set-property-form .heading {
+       font-size: 24px;
    }
 
-}
-
-.set-property-form .property-details .btn{
-   font-size: 1.5rem;
+   .set-property-form input[type="submit"] {
+       font-size: 14px;
+       padding: 10px;
+   }
 }
 
 
@@ -994,4 +986,686 @@ section{
 }
 .property-form p span{
    color: #e74c3c;
+}
+
+.property-form select,
+.property-form input {
+   padding: 12px;
+   font-size: 14px;
+   border: 1px solid #ddd;
+   border-radius: 6px;
+   background-color: #f8f8f8;
+   width: 100%;
+   transition: border-color 0.3s, box-shadow 0.3s ease-in-out;
+}
+.property-form select:focus,
+.property-form input:focus {
+   border-color: #007bff;
+   box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
+}
+
+
+.occupied-properties-table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 20px;
+}
+
+.occupied-properties-table th, .occupied-properties-table td {
+   border: 1px solid #ddd;
+   padding: 10px;
+   background-color: #f9f9f9;
+   text-align: center;
+}
+
+.occupied-properties-table th {
+   background-color: #333;
+   color: #fff;
+}
+
+.occupied-properties-table tr:nth-child(even) {
+   background-color: #f9f9f9;
+}
+
+.occupied-properties-table tr:hover {
+   background-color: #f1f1f1;
+}
+
+.occupied-properties-table .delete-btn {
+   background-color: #ff4d4d;
+   color: #fff;
+   padding: 5px 10px;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+}
+
+.occupied-properties-table .delete-btn:hover {
+   background-color: #cc0000;
+}
+
+.manage-bills-form {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.manage-bills-form:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.manage-bills-form .heading {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.manage-bills-form .bill-details {
+    font-size: 1.5rem;
+    padding: 20px;
+    background-color: #fafafa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.manage-bills-form .bill-details label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.manage-bills-form .bill-details input[type="text"],
+.bill-details input[type="number"],
+.bill-details input[type="datetime-local"],
+.bill-details select {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    margin-top: 8px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+.manage-bills-form .bill-details input[type="text"]:focus,
+.bill-details input[type="number"]:focus,
+.bill-details input[type="datetime-local"]:focus,
+.bill-details select:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.manage-bills-form .bill-details input[type="submit"] {
+    background-color: #28a745;
+    color: #fff;
+    padding: 15px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.manage-bills-form .bill-details input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+.manage-bills-form .bill-details .error-msg {
+    color: #e74c3c;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.add-bills {
+   padding: 40px;
+   background-color: #ffffff;
+   border-radius: 10px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   width: 100%;
+   max-width: 600px;
+   margin: 40px auto;
+}
+
+.add-bills h1 {
+   text-align: center;
+   color: #333;
+   margin-bottom: 25px;
+   font-size: 28px;
+   font-weight: 600;
+}
+
+.add-bills-form {
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+}
+
+.form-group {
+   display: flex;
+   flex-direction: column;
+}
+
+.add-bills-form label {
+   font-size: 14px;
+   color: #555;
+   margin-bottom: 8px;
+   font-weight: 500;
+}
+
+.add-bills-form select,
+.add-bills-form input {
+   padding: 12px;
+   font-size: 14px;
+   border: 1px solid #ddd;
+   border-radius: 6px;
+   background-color: #f8f8f8;
+   width: 100%;
+   transition: border-color 0.3s, box-shadow 0.3s ease-in-out;
+}
+
+.add-bills-form select:focus,
+.add-bills-form input:focus {
+   border-color: #007bff;
+   box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
+   outline: none;
+}
+
+.add-bills-form button {
+   padding: 12px 20px;
+   font-size: 16px;
+   color: white;
+   background-color: #007bff;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+   width: 100%;
+}
+
+.add-bills-form button:hover {
+   background-color: #0056b3;
+}
+
+.message {
+   text-align: center;
+   font-size: 14px;
+   color: #28a745;
+   margin-top: 20px;
+}
+
+.message.error {
+   color: #dc3545;
+}
+
+.add-bills-form select:invalid {
+   border-color: #dc3545;
+}
+
+.add-bills-form select:invalid:focus {
+   box-shadow: 0 0 5px rgba(220, 53, 69, 0.5);
+}
+
+/* General table styling */
+.bill-table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 20px;
+   font-family: 'Arial', sans-serif;
+   font-size: 14px;
+}
+
+.bill-table th, .bill-table td {
+   padding: 12px 15px;
+   border: 1px solid #ddd;
+   text-align: center;
+   font-size: 14px;
+}
+
+.bill-table th {
+   background-color: #333;
+   color: #f9f9f9;
+   font-size: 16px;
+   font-weight: bold;
+   text-transform: uppercase;
+   position: sticky;
+   top: 0;
+   z-index: 1;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow to separate the header from the content */
+}
+
+.bill-table tr:nth-child(even) {
+   background-color: #f9f9f9;
+}
+
+.bill-table tr:hover {
+   background-color: #f1f1f1;
+   cursor: pointer;
+}
+
+.bill-table .status {
+   padding: 6px 12px;
+   border-radius: 5px;
+   font-weight: bold;
+   text-transform: capitalize;
+   display: inline-block;
+}
+
+.bill-table .status.pending {
+   background-color: #f39c12;
+   color: white;
+}
+
+.bill-table .status.paid {
+   background-color: #2ecc71;
+   color: white;
+}
+
+.bill-table .status.overdue {
+   background-color: #e74c3c;
+   color: white;
+}
+
+/* Buttons Styling */
+.btn {
+   padding: 10px 15px;
+   font-size: 14px;
+   cursor: pointer;
+   border-radius: 5px;
+   border: none;
+   margin: 5px;
+   transition: all 0.3s ease;
+   display: inline-block;
+   text-align: center;
+}
+
+.btn-success {
+   background-color: #2ecc71;
+   color: white;
+}
+
+.btn-success:hover {
+   background-color: #27ae60;
+}
+
+.btn-danger {
+   background-color: #e74c3c;
+   color: white;
+}
+
+.btn-danger:hover {
+   background-color: #c0392b;
+}
+
+.no-action {
+   color: #7f8c8d;
+   font-style: italic;
+}
+
+/* Filter form styling */
+.status-filter, .tenant-filter {
+   margin-bottom: 20px;
+   font-size: 14px;
+   display: flex;
+   align-items: center;
+}
+
+.status-filter label, .tenant-filter label {
+   margin-right: 10px;
+   font-weight: bold;
+   color: #333;
+}
+
+.status-filter select, .tenant-filter select {
+   padding: 8px 12px;
+   font-size: 14px;
+   border-radius: 5px;
+   border: 1px solid #ddd;
+   max-width: 250px;
+}
+
+.tenant-filter select {
+   width: 250px;
+}
+
+.status-filter select {
+   width: 150px;
+}
+
+/* Table Wrapper Styling */
+.bill-table-wrapper {
+   max-height: 600px; /* Increased height for the wrapper */
+   overflow-y: auto; /* Enable vertical scrolling */
+   border: 1px solid #ddd;
+   border-radius: 5px;
+   background-color: #fff;
+}
+/* Wrapper for the table to control the max-height */
+.table {
+   max-width: 100%;
+   margin: 0 auto;
+   padding: 20px;
+}
+
+/* For the Add Bill Form */
+.add-bills-form {
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+}
+
+.add-bills-form .form-group {
+   display: flex;
+   flex-direction: column;
+}
+
+.add-bills-form button {
+   padding: 10px 15px;
+   background-color: #4CAF50;
+   color: white;
+   border: none;
+   cursor: pointer;
+   border-radius: 5px;
+   font-size: 1.2rem;
+   transition: background-color 0.3s ease;
+}
+
+.add-bills-form button:hover {
+   background-color: #45a049;
+}
+
+/* General Table Styling */
+.receipt-table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 20px;
+   font-family: 'Arial', sans-serif;
+   font-size: 14px;
+}
+
+.receipt-table th, .receipt-table td {
+   padding: 12px 15px;
+   border: 1px solid #ddd;
+   text-align: center;
+   font-size: 14px;
+}
+
+.receipt-table th {
+   background-color: #333;
+   color: #f9f9f9;
+   font-size: 16px;
+   font-weight: bold;
+   text-transform: uppercase;
+}
+
+.receipt-table tr:nth-child(even) {
+   background-color: #f9f9f9;
+}
+
+.receipt-table tr:hover {
+   background-color: #f1f1f1;
+   cursor: pointer;
+}
+
+.receipt-table .status {
+   padding: 6px 12px;
+   border-radius: 5px;
+   font-weight: bold;
+   text-transform: capitalize;
+   display: inline-block;
+}
+
+.receipt-table .status.pending {
+   background-color: #f39c12;
+   color: white;
+}
+
+.receipt-table .status.paid {
+   background-color: #2ecc71;
+   color: white;
+}
+
+.receipt-table .status.overdue {
+   background-color: #e74c3c;
+   color: white;
+}
+
+/* Modal Styling */
+.modal {
+   display: none; /* Hidden by default */
+   position: fixed; /* Stay in place */
+   z-index: 1; /* Sit on top */
+   left: 0;
+   top: 0;
+   width: 100%; /* Full width */
+   height: 100%; /* Full height */
+   background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+   padding-top: 60px;
+}
+
+.modal-content {
+   background-color: #fff;
+   margin: auto;
+   padding: 20px;
+   width: 80%;
+   height: 80%;
+   max-width: 800px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+   border-radius: 10px;
+}
+
+.close-btn {
+   color: #aaa;
+   font-size: 28px;
+   font-weight: bold;
+   position: absolute;
+   right: 10px;
+   top: 5px;
+   cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+   color: black;
+   text-decoration: none;
+   cursor: pointer;
+}
+
+.view-receipt {
+   color: #007bff;
+   text-decoration: none;
+   cursor: pointer;
+}
+
+.view-receipt:hover {
+   text-decoration: underline;
+}
+
+/* Add responsiveness for mobile devices */
+@media (max-width: 768px) {
+   .modal-content {
+       width: 95%;
+       height: 90%;
+   }
+}
+
+.btn-validate {
+   display: flex; /* Use flexbox for alignment */
+   justify-content: center; /* Center the button text */
+   align-items: center; /* Vertically center the text */
+   padding: 15px 30px; /* Adjust padding for balance */
+   height: 50px; /* Set a proper height */
+   background-color: #4CAF50; /* A smooth green background color */
+   color: white; /* White text color */
+   font-size: 16px; /* Appropriate font size */
+   font-weight: bold; /* Make text bold for emphasis */
+   border-radius: 5px; /* Rounded corners */
+   border: none; /* Remove border */
+   transition: background-color 0.3s, transform 0.2s; /* Smooth transition for hover effects */
+   cursor: pointer; /* Change the cursor to a pointer */
+}
+
+.btn-validate:hover {
+   background-color: #45a049; /* Darker green when hovered */
+   transform: translateY(-2px); /* Slight lift effect when hovered */
+}
+
+.btn-validate:active {
+   background-color: #388e3c; /* Even darker green when clicked */
+   transform: translateY(0); /* Remove the lift effect when clicked */
+}
+
+/* Receipt Filter Section */
+.receipt-filter-container {
+
+    text-align: center;
+    background-color: #fff;
+
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.receipt-filter-container form {
+    display: inline-block;
+}
+
+.receipt-filter-container select {
+    padding: 8px;
+    margin-right: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.receipt-filter-container button {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.receipt-filter-container button:hover {
+    background-color: #45a049;
+}
+
+/* Receipt Table Section */
+.receipt-table-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.receipt-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.receipt-table th, .receipt-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.receipt-table th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-size: 1.1em;
+}
+
+.receipt-table td {
+    color: #666;
+}
+
+.receipt-table a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.receipt-table a:hover {
+    text-decoration: underline;
+}
+
+/* Popup Styles */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 1000;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 800px;
+    display: none;
+    z-index: 1001;
+}
+
+.popup img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.popup iframe {
+    width: 100%;
+    height: 400px;
+    border: none;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    background: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #f44336;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .receipt-table-container, .receipt-filter-container {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .receipt-table th, .receipt-table td {
+        padding: 8px;
+    }
+
+    .popup {
+        width: 90%;
+    }
 }

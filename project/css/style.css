@@ -1601,26 +1601,6 @@ section{
    margin-top: 20px;
 }
 
-.complaints-section {
-   margin: 50px auto;
-   max-width: 900px;
-   padding: 30px;
-   background-color: #fff;
-   border-radius: 10px;
-   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-   transition: all 0.3s ease;
-}
-
-.complaints-section:hover {
-   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-}
-
-.complaints-section h1 {
-   font-size: 2rem;
-   text-align: center;
-   margin-bottom: 20px;
-   color: #2c3e50;
-}
 
 .complaints-table {
    width: 100%;
@@ -1677,3 +1657,277 @@ section{
    font-size: 1.2rem;
    color: #e74c3c;
 }
+
+/* General table styling */
+.bill-table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 20px;
+   font-family: 'Arial', sans-serif;
+   font-size: 14px;
+   color: var(--black);
+}
+
+.bill-table th, .bill-table td {
+   padding: 12px 15px;
+   border: 1px solid #ddd;
+   text-align: center;
+   font-size: 14px;
+}
+
+/* Table Header */
+.bill-table th {
+   background-color: #333;
+   color: #f9f9f9;
+   font-size: 16px;
+   font-weight: bold;
+   text-transform: uppercase;
+   position: sticky;
+   top: 0;
+   z-index: 1;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow to separate the header from the content */
+}
+
+/* Table Body */
+.bill-table tr:nth-child(even) {
+   background-color: #f9f9f9;
+}
+
+.bill-table tr:hover {
+   background-color: #f1f1f1;
+   cursor: pointer;
+}
+
+/* Status Styling */
+.bill-table .status {
+   padding: 6px 12px;
+   border-radius: 5px;
+   font-weight: bold;
+   text-transform: capitalize;
+   display: inline-block;
+}
+
+.bill-table .status.pending {
+   background-color: #f39c12; /* Orange for Pending */
+   color: white;
+}
+
+.bill-table .status.paid {
+   background-color: #2ecc71; /* Green for Paid */
+   color: white;
+}
+
+.bill-table .status.overdue {
+   background-color: #e74c3c; /* Red for Overdue */
+   color: white;
+}
+
+/* Buttons Styling */
+.bill-table .action-btn {
+   padding: 10px 15px;
+   background-color: red;
+   font-size: 14px;
+   cursor: pointer;
+   border-radius: 5px;
+   border: none;
+   margin: 5px;
+   transition: all 0.3s ease;
+   display: inline-block;
+   text-align: center;
+}
+.bill-table td a {
+   background-color: rgb(194, 17, 17);
+   color: #f1f1f1;
+   padding: 12px;
+   border-radius: 10px;
+   max-width: 100%;
+}
+
+.bill-table .action-btn.success {
+   background-color: #2ecc71;
+   color: white;
+}
+
+.bill-table .action-btn.success:hover {
+   background-color: #27ae60;
+}
+
+.bill-table .action-btn.danger {
+   background-color: #e74c3c;
+   color: white;
+}
+
+.bill-table .action-btn.danger:hover {
+   background-color: #c0392b;
+}
+
+/* Empty table message */
+.bill-table td[colspan="7"] {
+   text-align: center;
+   padding: 2rem;
+   font-size: 1.6rem;
+   color: var(--gray);
+   font-style: italic;
+}
+
+/* Table Wrapper Styling */
+.bill-table-wrapper {
+   max-height: 600px; /* Increased height for the wrapper */
+   overflow-y: auto; /* Enable vertical scrolling */
+   border: 1px solid #ddd;
+   border-radius: 5px;
+   background-color: #fff;
+}
+
+/* Styling the table container */
+.bill-table-container {
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: 20px;
+   background-color: #f9f9f9;
+   border-radius: 10px;
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.bill-table-container .heading {
+   font-size: 2.4rem;
+   font-weight: bold;
+   color: var(--main-color);
+   margin-bottom: 2rem;
+   text-align: center;
+}
+
+/* Filter form styling */
+.status-filter, .tenant-filter {
+   margin-bottom: 20px;
+   font-size: 14px;
+   display: flex;
+   align-items: center;
+}
+
+.status-filter label, .tenant-filter label {
+   margin-right: 10px;
+   font-weight: bold;
+   color: #333;
+}
+
+.status-filter select, .tenant-filter select {
+   padding: 8px 12px;
+   font-size: 14px;
+   border-radius: 5px;
+   border: 1px solid #ddd;
+   max-width: 250px;
+}
+
+.tenant-filter select {
+   width: 250px;
+}
+
+.status-filter select {
+   width: 150px;
+}
+
+/* Custom hover color for the table row */
+.bill-table tr:hover {
+   background-color: #e8e8e8;
+}
+
+/* Ensure the action links have consistent styling */
+.bill-table .action-btn a {
+   color: var(--white);
+   text-decoration: none;
+}
+
+/* Responsive Design - for smaller screens */
+@media (max-width: 768px) {
+   .bill-table th, .bill-table td {
+       padding: 0.8rem;
+       font-size: 1.4rem;
+   }
+
+   .bill-table .action-btn {
+       font-size: 1.4rem;
+       padding: 0.8rem 1.5rem;
+       background-color: red;
+   }
+
+   .bill-table-container {
+       padding: 1rem;
+   }
+
+   .bill-table-container .heading {
+       font-size: 2rem;
+   }
+}
+
+/* Style for the payment form section */
+.payment-form {
+   width: 80%;
+   margin: 20px auto;
+   padding: 20px;
+   background-color: #f9f9f9;
+   border-radius: 8px;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading for the payment form */
+.payment-form .heading {
+   font-size: 24px;
+   font-weight: bold;
+   text-align: center;
+   margin-bottom: 20px;
+   color: #333;
+}
+
+/* Label styling for form fields */
+.payment-form label {
+   font-size: 16px;
+   font-weight: 500;
+   color: #555;
+   display: block;
+   margin-bottom: 8px;
+}
+
+/* Styling for input fields */
+.payment-form input[type="file"],
+.payment-form textarea {
+   width: 100%;
+   padding: 10px;
+   margin-bottom: 15px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   font-size: 14px;
+   background-color: #f4f4f4;
+}
+
+/* Styling for the text area */
+.payment-form textarea {
+   height: 150px;
+}
+
+/* Submit button styling */
+.payment-form button {
+   background-color: #4CAF50;
+   color: white;
+   border: none;
+   padding: 12px 20px;
+   font-size: 16px;
+   font-weight: bold;
+   border-radius: 5px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+.payment-form button:hover {
+   background-color: #45a049;
+}
+
+/* Error message styling */
+.payment-form .error-message {
+   color: red;
+   font-size: 14px;
+   text-align: center;
+   margin-top: 10px;
+}
+

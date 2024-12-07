@@ -9,6 +9,8 @@ if (isset($_COOKIE['user_id'])) {
     exit();
 }
 
+$message = ''; // Initialize message variable
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $complaint_type = $_POST['complaint_type'] ?? '';
     $description = $_POST['description'] ?? '';
@@ -17,8 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt = $conn->prepare("INSERT INTO complaints (user_id, complaint_type, description) VALUES (?, ?, ?)");
         $stmt->execute([$user_id, $complaint_type, $description]);
         $message = "Complaint submitted successfully!";
+        $alert_type = 'success';
     } else {
         $message = "Please fill in all fields!";
+        $alert_type = 'error';
     }
 }
 ?>
@@ -32,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Submit an Issue</title>
     <link rel="stylesheet" href="/project/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert CDN -->
 </head>
 
 <body>
@@ -39,7 +44,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <section class="complaint-details">
     <h1>Submit an Issue</h1>
-    <?php if (!empty($message)) { echo "<p>$message</p>"; } ?>
+    
+    <!-- If there is a message, display SweetAlert -->
+    <?php if (!empty($message)): ?>
+        <script>
+            Swal.fire({
+                title: "<?php echo $alert_type === 'success' ? 'Success!' : 'Error!'; ?>",
+                text: "<?php echo $message; ?>",
+                icon: "<?php echo $alert_type; ?>",
+                confirmButtonText: "Okay",
+                background: '#fff',
+                iconColor: '<?php echo $alert_type === 'success' ? '#4CAF50' : '#F44336'; ?>',
+                confirmButtonColor: '#3085d6'
+            });
+        </script>
+    <?php endif; ?>
+
     <form action="" method="POST">
         <label for="complaint_type">Complaint Type:</label>
         <select name="complaint_type" id="complaint_type" required>
@@ -59,7 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <button type="submit">Submit Complaint</button>
     </form>
 </section>
-
 
 </body>
 

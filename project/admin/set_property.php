@@ -100,6 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Set Property</title>
     <link rel="stylesheet" href="../css/admin_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
 <body>
@@ -113,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <p><strong>Location:</strong> <?= htmlspecialchars($property['address']); ?></p>
                 <p><strong>Price:</strong> <?= htmlspecialchars($property['price']); ?></p>
                 <p><strong>Status:</strong> <?= htmlspecialchars($property['status']); ?></p>
-<br>
+                <br><br><br>
                 <label for="tenant_id">Select Tenant:</label>
                 <select name="tenant_id" id="tenant_id" required>
                     <option value="" disabled selected>Select a tenant</option>
@@ -121,13 +122,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <option value="<?= $user['id']; ?>"><?= htmlspecialchars($user['name']); ?> - <?= htmlspecialchars($user['number']); ?></option>
                     <?php endforeach; ?>
                 </select>
-
+                <br><br><br>
                 <label for="occupants">Number of Occupants:</label>
                 <input type="number" name="occupants" required min="1" max="99">
-
+                <br><br><br>
                 <label for="contract_image">Upload Contract (Image or PDF):</label>
                 <input type="file" name="contract_image" accept="image/*, .pdf" required>
-
+                <br><br><br>
                 <label for="status">Status:</label>
                 <input type="text" name="status" placeholder="e.g., Active, Terminated" required>
 

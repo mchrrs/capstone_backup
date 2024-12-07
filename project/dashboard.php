@@ -119,13 +119,13 @@ if (isset($_COOKIE['user_id'])) {
          <!-- Payments Box -->
          <div class="box">
             <?php
-            $count_payments = $conn->prepare("SELECT * FROM `qr_payments` WHERE user_id = ?");
-            $count_payments->execute([$user_id]);
-            $total_payments = $count_payments->rowCount();
+            $count_bills = $conn->prepare("SELECT * FROM `bills` WHERE user_id = ?");
+            $count_bills->execute([$user_id]);
+            $total_bills = $count_bills->rowCount();
             ?>
-            <h3><?= $total_payments; ?></h3>
-            <p>Payments Made</p>
-            <a href="/project/payment.php" class="btn">Pay Rent</a>
+            <h3><?= $total_bills; ?></h3>
+            <p>My Bills</p>
+            <a href="/project/my_bills.php" class="btn">Pay Rent</a>
          </div>
 
          <!-- Owned Property Box -->

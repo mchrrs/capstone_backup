@@ -66,27 +66,6 @@ CREATE TABLE `property` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
--- Table: `qr_payments`
-CREATE TABLE `qr_payments` (
-    `id` INT AUTO_INCREMENT PRIMARY KEY,
-    `user_id` VARCHAR(20) NOT NULL,
-    `payment_amount` DECIMAL(10, 2) NOT NULL,
-    `payment_date` DATETIME DEFAULT CURRENT_TIMESTAMP,
-    `qr_code` VARCHAR(255) NOT NULL,
-    `status` ENUM('pending', 'completed', 'failed') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
--- Table: `messages`
-CREATE TABLE `messages` (
-    `id` VARCHAR(20) NOT NULL PRIMARY KEY,
-    `name` VARCHAR(50) NOT NULL,
-    `email` VARCHAR(100) NOT NULL,
-    `number` VARCHAR(15) NOT NULL,
-    `message` TEXT NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
 -- Table: `transactions`
 CREATE TABLE `transactions` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -108,8 +87,6 @@ CREATE TABLE `complaints` (
     `submitted_at` DATETIME DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
-
 -- --------------------------------------------------------
 -- Updated Table: `occupied_properties`
 CREATE TABLE `occupied_properties` (
@@ -122,5 +99,38 @@ CREATE TABLE `occupied_properties` (
     `email` VARCHAR(100) NOT NULL,
     `status` VARCHAR(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+-- Table: `bills`
+CREATE TABLE `bills` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id` VARCHAR(20) NOT NULL,             -- Link bill to a specific user
+    `property_id` VARCHAR(20) NOT NULL,         -- Link bill to a specific property
+    `house_rent` DECIMAL(10, 2) NOT NULL,       -- House rent bill
+    `water_bill` DECIMAL(10, 2) NOT NULL,       -- Water bill
+    `electricity_bill` DECIMAL(10, 2) NOT NULL, -- Electricity bill
+    `total` DECIMAL(10, 2) GENERATED ALWAYS AS 
+        (`house_rent` + `water_bill` + `electricity_bill`) STORED, -- Total (calculated)
+    `due_date` DATETIME NOT NULL,               -- Due date for payment
+    `status` ENUM('pending', 'paid', 'overdue') NOT NULL DEFAULT 'pending', -- Bill status
+    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+-- Table: `receipts`
+CREATE TABLE `receipts` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `bill_id` INT NOT NULL,                     -- Link receipt to a specific bill
+    `user_id` VARCHAR(20) NOT NULL,              -- Link receipt to a specific user (VARCHAR(20))
+    `name` VARCHAR(50) NOT NULL,                 -- Store user's name directly in receipts table
+    `receipt_file` VARCHAR(255) NOT NULL,        -- File path for the uploaded receipt
+    `remarks` TEXT,                             -- Optional remarks or description
+    `submitted_at` DATETIME DEFAULT CURRENT_TIMESTAMP, -- When the receipt was submitted
+    `status` ENUM('pending', 'paid', 'rejected') DEFAULT 'pending', -- Status of payment validation
+    `approved_by` INT DEFAULT NULL,             -- Admin who approved/rejected the payment
+    `approved_at` DATETIME DEFAULT NULL         -- When the payment was approved/rejected
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 COMMIT;
