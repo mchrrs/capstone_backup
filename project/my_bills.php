@@ -141,7 +141,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_payment']) && 
                             <td>₱<?php echo number_format($bill['total'], 2); ?></td>
                             <td><?php echo date('F j, Y', strtotime($bill['due_date'])); ?></td>
                             <td><span class="status <?php echo strtolower($bill['status']); ?>"><?php echo ucfirst($bill['status']); ?></span></td>
-                            <td><a href="payment.php?bill_id=<?php echo $bill['id']; ?>">Pay Now</a></td>
+                            <td><?php if ($bill['status'] === 'pending'): ?>
+                                    <form method="POST" style="display:inline;">
+                                        <input type="hidden" name="bill_id" value="<?= $bill['id']; ?>"><a href="payment.php?bill_id=<?php echo $bill['id']; ?>">Pay Now</a>
+                                    </form>
+                                <?php else: ?>
+                                    <span class="no-action">No actions available</span>
+                                <?php endif; ?>
+                            </td>
+
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>

@@ -234,7 +234,7 @@ $select_properties->execute([$user_id]);
 
                         <!-- Action Buttons -->
                         <div class="actions">
-                            <a href="/project/messages_index.php" class="btn">Message Admin</a>
+                            <a href="/project/users_messaging.php" class="btn">Message Admin</a>
                             <a href="complaints.php?property_id=<?= $fetch_property['id']; ?>" class="btn">Submit a Complaint</a>
                         </div>
                     </div>

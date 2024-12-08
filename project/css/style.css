@@ -1931,3 +1931,300 @@ section{
    margin-top: 10px;
 }
 
+/* General Styling */
+.messaging-box {
+   background-color: #ffffff;  /* White */
+   padding: 2rem;
+   border-radius: 8px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   max-width: 800px;
+   margin: auto;
+   font-family: 'Arial', sans-serif;
+}
+
+/* Heading Styles */
+.messaging-box .heading {
+   text-align: center;
+   color: #33a2ff;  /* Light blue */
+   font-size: 2.2rem;
+   margin-bottom: 1.5rem;
+}
+
+/* Start a New Conversation Section */
+.start-conversation {
+   background-color: #f5f5f5;  /* Light gray */
+   padding: 1.5rem;
+   border-radius: 8px;
+   margin-bottom: 2rem;
+}
+
+.start-conversation h3 {
+   color: #333333;  /* Dark gray */
+   font-size: 1.4rem;
+   margin-bottom: 1rem;
+}
+
+.start-conversation form {
+   display: flex;
+   flex-direction: column;
+}
+
+.start-conversation select {
+   padding: 0.8rem;
+   margin-bottom: 1rem;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   font-size: 1rem;
+}
+
+.start-conversation button {
+   background-color: #2c8ccf;  /* Blue shade for buttons */
+   color: #ffffff;  /* White */
+   padding: 0.8rem;
+   border: none;
+   border-radius: 4px;
+   font-size: 1.1rem;
+   cursor: pointer;
+   transition: background-color 0.3s;
+}
+
+.start-conversation button:hover {
+   background-color: #1f6fa4;  /* Darker blue for hover */
+}
+
+/* Conversations List */
+.conversations {
+   background-color: #f5f5f5;  /* Light gray */
+   padding: 1.5rem;
+   border-radius: 8px;
+}
+
+.conversations .conversation {
+   background-color: #ffffff;  /* White */
+   margin-bottom: 1.2rem;
+   padding: 1rem;
+   border-radius: 6px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.conversations .conversation h3 {
+   color: #33a2ff;  /* Light blue */
+   font-size: 1.5rem;
+   margin-bottom: 0.5rem;
+}
+
+.conversations .conversation a {
+   color: #33a2ff;  /* Light blue */
+   text-decoration: none;
+   font-size: 1rem;
+   transition: color 0.3s;
+}
+
+.conversations .conversation a:hover {
+   color: #1f6fa4;  /* Darker blue for hover */
+}
+
+.conversations p {
+   color: #333333;  /* Dark gray */
+   font-size: 1.1rem;
+   text-align: center;
+   padding-top: 1rem;
+}
+
+/* General Styling for the Chat Box */
+.chat-box {
+    background-color: #ffffff;  /* White */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: auto;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Heading Styling */
+.chat-box .heading {
+    text-align: center;
+    color: #33a2ff;  /* Light blue */
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Chat Box Container */
+.user-chat-box {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: #f5f5f5;  /* Light gray */
+    border-radius: 8px;
+}
+
+/* Message Styles */
+.message {
+    background-color: #ffffff;  /* White */
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.message p {
+    color: #333333;  /* Dark gray */
+    font-size: 1rem;
+}
+
+.message .timestamp {
+    color: #999999;  /* Light gray */
+    font-size: 0.9rem;
+    text-align: right;
+    display: block;
+    margin-top: 0.5rem;
+}
+
+/* Sent Message Styling */
+.message.sent {
+    background-color: #e3f7ff;  /* Light blue background for sent messages */
+    border-left: 4px solid #33a2ff;  /* Blue left border */
+    text-align: right;
+}
+
+/* Received Message Styling */
+.message.received {
+    background-color: #f5f5f5;  /* Light gray background for received messages */
+    border-left: 4px solid #cccccc;  /* Light gray left border */
+    text-align: left;
+}
+
+/* Message Input Form Styling */
+.send-message-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.send-message-form textarea {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    resize: none;
+    min-height: 80px;
+}
+
+.send-message-form button {
+    background-color: #2c8ccf;  /* Blue shade for buttons */
+    color: #ffffff;  /* White */
+    padding: 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.send-message-form button:hover {
+    background-color: #1f6fa4;  /* Darker blue for hover */
+}
+
+/* General Styling for the Chat Box */
+.chat-box {
+   background-color: #ffffff;  /* White */
+   padding: 2rem;
+   border-radius: 8px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   max-width: 900px;
+   margin: auto;
+   font-family: 'Arial', sans-serif;
+   display: flex;
+   flex-direction: column;
+   height: 80vh;  /* Adjust to fit within 80% of the viewport height */
+}
+
+/* Heading Styling */
+.chat-box .heading {
+   text-align: center;
+   color: #33a2ff;  /* Light blue */
+   font-size: 2.2rem;
+   margin-bottom: 1.5rem;
+}
+
+/* Chat Box Container */
+.user-chat-box {
+   flex-grow: 1;
+   max-height: 500px;
+   overflow-y: auto;
+   margin-bottom: 2rem;
+   padding: 1rem;
+   background-color: #f5f5f5;  /* Light gray */
+   border-radius: 8px;
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+}
+
+/* Message Styles */
+.message {
+   background-color: #ffffff;  /* White */
+   padding: 1rem;
+   border-radius: 6px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   max-width: 75%;  /* Limit the width of the messages */
+   word-wrap: break-word;  /* Allow long words to break to the next line */
+   overflow-wrap: break-word;  /* Ensure long words don't overflow */
+   font-size: 1rem;
+   line-height: 1.5;
+   margin-bottom: 1rem;
+}
+
+/* Sent Message Styling */
+.message.sent {
+   background-color: #e3f7ff;  /* Light blue background for sent messages */
+   border-left: 4px solid #33a2ff;  /* Blue left border */
+   text-align: right;
+   margin-left: auto;  /* Align to the right side */
+}
+
+/* Received Message Styling */
+.message.received {
+   background-color: #f5f5f5;  /* Light gray background for received messages */
+   border-left: 4px solid #cccccc;  /* Light gray left border */
+   text-align: left;
+   margin-right: auto;  /* Align to the left side */
+}
+
+/* Message Input Form Styling */
+.send-message-form {
+   display: flex;
+   flex-direction: column;
+   align-items: stretch;
+   margin-top: auto;  /* Align to the bottom */
+}
+
+.send-message-form textarea {
+   padding: 1rem;
+   margin-bottom: 1rem;
+   border: 1px solid #ccc;
+   border-radius: 6px;
+   font-size: 1rem;
+   resize: none;
+   min-height: 80px;
+   max-height: 120px;  /* Prevent textarea from getting too large */
+   overflow-y: auto;
+}
+
+.send-message-form button {
+   background-color: #2c8ccf;  /* Blue shade for buttons */
+   color: #ffffff;  /* White */
+   padding: 1rem;
+   border: none;
+   border-radius: 6px;
+   font-size: 1.1rem;
+   cursor: pointer;
+   transition: background-color 0.3s;
+}
+
+.send-message-form button:hover {
+   background-color: #1f6fa4;  /* Darker blue for hover */
+}

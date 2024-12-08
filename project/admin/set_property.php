@@ -1,25 +1,25 @@
 <?php
 include '../components/connect.php';
 
+$alert_message = null; // Variable to store SweetAlert message
+
 if (!isset($_GET['get_id']) || empty($_GET['get_id'])) {
-    header('Location: listings.php'); // Redirect if no property ID is passed
+    header('Location: listings.php');
     exit;
 }
 
 $property_id = filter_var($_GET['get_id'], FILTER_SANITIZE_STRING);
 
-// Fetch users (tenants) for dropdown selection
 $select_users = $conn->prepare("SELECT id, name, number FROM `users`");
 $select_users->execute();
 $users = $select_users->fetchAll(PDO::FETCH_ASSOC);
 
-// Fetch property details for display
 $select_property = $conn->prepare("SELECT * FROM `property` WHERE id = ?");
 $select_property->execute([$property_id]);
 $property = $select_property->fetch(PDO::FETCH_ASSOC);
 
 if (!$property) {
-    header('Location: listings.php'); // Redirect if property does not exist
+    header('Location: listings.php');
     exit;
 }
 
@@ -29,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $status = $_POST['status'];
     $contract_image = $_FILES['contract_image'];
 
-    // Validate uploaded file
     if ($contract_image['error'] == 0) {
         $contract_image_name = $contract_image['name'];
         $contract_image_tmp = $contract_image['tmp_name'];
@@ -40,54 +39,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $contract_image_new_name = uniqid('', true) . '.' . $contract_image_ext;
             move_uploaded_file($contract_image_tmp, 'uploaded_contracts/' . $contract_image_new_name);
         } else {
-            echo '<p class="error-msg">Invalid file type. Only JPG, JPEG, PNG, and PDF files are allowed.</p>';
-            exit;
+            $alert_message = 'Invalid file type. Only JPG, JPEG, PNG, and PDF files are allowed.';
         }
     } else {
-        echo '<p class="error-msg">Please upload a valid contract image.</p>';
-        exit;
+        $alert_message = 'Please upload a valid contract image.';
     }
 
-    // Fetch tenant details
-    $select_tenant = $conn->prepare("SELECT name, number, email FROM `users` WHERE id = ?");
-    $select_tenant->execute([$tenant_id]);
-    $tenant = $select_tenant->fetch(PDO::FETCH_ASSOC);
+    if ($alert_message === null) {
+        $select_tenant = $conn->prepare("SELECT name, number, email FROM `users` WHERE id = ?");
+        $select_tenant->execute([$tenant_id]);
+        $tenant = $select_tenant->fetch(PDO::FETCH_ASSOC);
 
-    if ($tenant && $occupants && isset($contract_image_new_name) && $status) {
-        // Update property status to 'occupied'
-        $update_property = $conn->prepare("UPDATE `property` SET status = 'occupied' WHERE id = ?");
-        $update_property->execute([$property_id]);
+        if ($tenant && $occupants && isset($contract_image_new_name) && $status) {
+            $update_property = $conn->prepare("UPDATE `property` SET status = 'occupied' WHERE id = ?");
+            $update_property->execute([$property_id]);
 
-        // Check property name before insert (debugging check)
-        var_dump($property['property_name']); // Should show the correct property name now
+            $insert_occupied = $conn->prepare("
+                INSERT INTO `occupied_properties` (property_name, name, occupants, contract, email, number, status)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            ");
+            $insert_occupied->execute([
+                $property['property_name'],
+                $tenant['name'],
+                $occupants,
+                $contract_image_new_name,
+                $tenant['email'],
+                $tenant['number'],
+                $status
+            ]);
 
-        // Insert into occupied_properties table
-        $insert_occupied = $conn->prepare("
-            INSERT INTO `occupied_properties` (property_name, name, occupants, contract, email, number, status) 
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-        ");
-        $insert_occupied->execute([
-            $property['property_name'],  // Pass property_name directly from the property table
-            $tenant['name'],
-            $occupants,
-            $contract_image_new_name,
-            $tenant['email'],
-            $tenant['number'],
-            $status
-        ]);
-
-        // Confirm the insert
-        if ($insert_occupied) {
-            echo "Insert Successful!";
+            // Only show success message and redirect after insert
+            $alert_message = 'Insert Successful!';
+            header("Location: occupied_properties.php");
+            exit;
         } else {
-            echo "Insert Failed!";
+            $alert_message = 'Please fill in all fields and upload a valid contract image.';
         }
-
-        // Redirect after successful insertion
-        header("Location: occupied_properties.php");
-        exit;
-    } else {
-        echo '<p class="error-msg">Please fill in all fields and upload a valid contract image.</p>';
     }
 }
 ?>
@@ -101,6 +88,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Set Property</title>
     <link rel="stylesheet" href="../css/admin_style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- Include SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -136,6 +125,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </form>
         </div>
     </section>
+
+    <!-- SweetAlert script -->
+    <script>
+        <?php if ($alert_message !== null): ?>
+            Swal.fire({
+                title: '<?= $alert_message ?>',
+                icon: '<?= strpos($alert_message, 'Invalid') !== false || strpos($alert_message, 'Please') !== false ? 'error' : 'success' ?>',
+                confirmButtonText: 'OK'
+            });
+        <?php endif; ?>
+    </script>
 </body>
 
 </html>

@@ -11,7 +11,7 @@
       <a href="post_property.php"><i class="fas fa-building"></i><span>Add Unit</span></a>
       <a href="users.php"><i class="fas fa-user"></i><span>Users</span></a>
       <a href="admins.php"><i class="fas fa-user-gear"></i><span>Admins</span></a>
-      <a href="messages_home.php"><i class="fas fa-message"></i><span>Messages</span></a>
+      <a href="admin_messaging.php"><i class="fas fa-message"></i><span>Messages</span></a>
       <a href="manage_bills.php"><i class="fa fa-credit-card"></i><span>Manage Bills</span></a>
       <a href="complaints.php"><i class="fa fa-exclamation-triangle"></i><span>Complaints</span></a>
    </nav>
